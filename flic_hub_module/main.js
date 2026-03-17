@@ -24,8 +24,11 @@ function initButton(button) {
 function syncButtons() {
 	var buttons = buttonManager.getButtons();
 	for (var i = 0; i < buttons.length; i++) {
-		ha.sendButtonBatteryState(buttons[i]);
-		ha.sendButtonConnectivityState(buttons[i]);
+		var button = buttons[i];
+		if (button.batteryStatus != null) {
+			ha.sendButtonBatteryState(button);
+		}
+		ha.sendButtonConnectivityState(button);
 	}
 }
 
